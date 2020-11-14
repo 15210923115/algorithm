@@ -32,7 +32,7 @@ function LinkedList() {
     
     // 向列表的特定位置插入一个新的项
     this.insert = function (position, element) {
-        if (position > -1 && position < length) {
+        if (position > -1 && position <= length) {
             let node = new Node(element);
             let current = head;
             let previous = undefined;
