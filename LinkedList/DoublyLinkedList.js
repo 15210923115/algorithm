@@ -115,18 +115,15 @@ DoublyLinkedList.prototype.print = function () {
 };
 
 let doubly = new DoublyLinkedList();
-doubly.append('a');// 0
-doubly.append('b');// 1
-doubly.append('c');// 2
-doubly.append('d');// 3
-doubly.append('e');// 4
-doubly.append('f');// 5
-doubly.append('g');// 6
-doubly.append('h');// 7
+doubly.append('1');// 0
+doubly.append('2');// 1
+doubly.append('3');// 2
+doubly.append('4');// 3
+doubly.append('5');// 4
 doubly.print();
 
-doubly.removeAt(6);
+doubly.removeAt(3);
 doubly.print();
 
-doubly.insert(6, 'x');
+doubly.insert(3, 'x');
 doubly.print();
