@@ -144,6 +144,52 @@ function LinkedList() {
         
         console.log(result);
     };
+
+    // 迭代反转链表
+    this.iteration_reverse = function (head) {
+        if (head === null || head.next === null) {
+            return head;
+        } else {
+            let beg = null;
+            let mid = head;
+            let end = head.next;
+
+            while(1) {
+                mid.next = beg;// 注意，这里只需改变 mid 所指节点的指向即可，不用修改 3 个指针的指向。
+                if (end === null) {
+                    break;
+                }
+
+                beg = mid;
+                mid = end;
+                end = end.next;
+            }
+
+            head = mid;
+            return head;
+        }
+    }
+
+    this.exec_iteration_reverse = function () {
+        head = this.iteration_reverse(head);
+    }
+
+    // 递归反转链表
+    this.recursive_reverse = function (head) {
+        if (head === null || head.next === null) {
+            return head;
+        } else {
+            let new_head = this.recursive_reverse(head.next);
+            head.next.next = head;
+            head.next = null;
+
+            return new_head;
+        }
+    }
+
+    this.exec_recursive_reverse = function () {
+        head = this.recursive_reverse(head);
+    }
 }
 
 let single = new LinkedList();
@@ -154,3 +200,21 @@ console.log(single.indexOf('c'));
 console.log(single.getHead());
 single.insert(2, 'd');
 single.print();
+
+const linked_1 = new LinkedList();
+linked_1.append('1');
+linked_1.append('2');
+linked_1.append('3');
+linked_1.append('4');
+linked_1.print();
+linked_1.exec_recursive_reverse();
+linked_1.print();
+
+const linked_2 = new LinkedList();
+linked_2.append('a');
+linked_2.append('b');
+linked_2.append('c');
+linked_2.append('d');
+linked_2.print();
+linked_2.exec_iteration_reverse();
+linked_2.print();
