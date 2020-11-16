@@ -70,21 +70,35 @@ DoublyLinkedList.prototype.insert = function (position, element) {
 
 DoublyLinkedList.prototype.removeAt = function (position) {
     if (position > -1 && position < this.length) {
-        let current = head;
+        let current = this.head;
+        let previous = null;
         let index = 0;
         if (position === 0) {// 移除第0项
             this.head = current.next;
-            
+
             if (this.length === 1) {
                 this.tail = null;
             } else {
                 this.head.prev = null;
             }
         } else if (position === this.length - 1) {// 移除最后一项
-            
+            current = this.tail;
+            this.tail = current.prev;
+            this.tail.next = null;
         } else {// 移除中间项
-            
+            while (index++ < position) {
+                previous = current;
+                current = current.next;
+            }
+
+            previous.next = current.next;
+            current.next.prev = previous;
         }
+
+        this.length--;
+
+        return current.element;
+
     } else {
         return null;
     }
@@ -101,9 +115,18 @@ DoublyLinkedList.prototype.print = function () {
 };
 
 let doubly = new DoublyLinkedList();
-doubly.append('a');
-doubly.append('b');
-doubly.append('c');
-doubly.append('d');
+doubly.append('a');// 0
+doubly.append('b');// 1
+doubly.append('c');// 2
+doubly.append('d');// 3
+doubly.append('e');// 4
+doubly.append('f');// 5
+doubly.append('g');// 6
+doubly.append('h');// 7
+doubly.print();
 
+doubly.removeAt(6);
+doubly.print();
+
+doubly.insert(6, 'x');
 doubly.print();
