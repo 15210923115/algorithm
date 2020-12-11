@@ -81,7 +81,7 @@ class BinaryBalanceSearchTree {
 
     // 获取平衡因子
     getBalanceFactor(node) {
-        let heightDifference = this.getNodeHeight(node.left) - this.getNodeHeight(node.right);
+        let heightDifference = this.getNodeHeight(node.left) - this.getNodeHeight(node.right);// 高度差
 
         switch (heightDifference) {
             case -2: return BalanceFactor.UNBALANCED_RIGHT;
