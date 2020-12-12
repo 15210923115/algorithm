@@ -71,27 +71,26 @@ class BinaryBalanceSearchTree {
         
     }
 
-    // 计算节点高度
+    // 计算结点高度
     getNodeHeight(node) {
-        /**
-         * 所以以这种层层递归的方式计算A树的高度，最终会遍历到计算叶子节点的高度。因为叶子节点的左孩子和右孩子均为空的，所以都返回了-1，叶子节点的高度就为Math.max(-1, -1) + 1 = 0了。
-         */
         if (node === null) {
-            return -1;
+            return -1;// 这个地方既可以返回0，也可以返回-1，就看根结点算第1层结点，还是第0层结点，如果是第0层，则返回-1
         }
         /**
          * 解释为什么是：Math.max(this.getNodeHeight(node.left), this.getNodeHeight(node.right)) + 1
-         * 举例子：假如有一个数树，根节点为A，左孩子为B，右孩子为C
-         * 要计算这个树的高度：只需要计算以节点B为根节点的子树的高度（假如高度为b）和以节点C为根节点的子树的高度（假如高度为c），求出Math.max(b, c)的最大值，然后再加上节点A本身就占据一层的高度，所以最后需要再加上1（把节点A加入到层高的一部分）
+         * 举例子：假如有一个数树，根结点为A，左孩子为B，右孩子为C
+         * 要计算这个树的高度：只需要计算以结点B为根结点的子树的高度（假如高度为b）和以结点C为根结点的子树的高度（假如高度为c），求出Math.max(b, c)的最大值，然后再加上结点A本身就占据一层的高度，所以最后需要再加上1（结点A是层高的一部分）
          * 
-         * 所以以这种层层递归的方式计算A树的高度，最终会遍历到计算叶子节点的高度。因为叶子节点的左孩子和右孩子均为空的，所以都返回了-1，叶子节点的高度就为Math.max(-1, -1) + 1 = 0了。
+         * 所以以这种层层递归的方式计算以A为根结点的树的高度，最终会遍历到计算叶子结点的高度。因为叶子结点的左孩子和右孩子均为空的，所以都返回了-1，叶子结点的高度就为Math.max(-1, -1) + 1 = 0了。（当node === null，return -1时）
+         * 
+         * 所以以这种层层递归的方式计算以A为根结点的树的高度，最终会遍历到计算叶子结点的高度。因为叶子结点的左孩子和右孩子均为空的，所以都返回了0，叶子结点的高度就为Math.max(0, 0) + 1 = 1了。（当node === null，return 0时）
          */
         return Math.max(this.getNodeHeight(node.left), this.getNodeHeight(node.right)) + 1;
     }
 
-    // 获取平衡因子（注意：不要把节点高度和节点的平衡因子搞混了，节点高度考虑的是节点最长的那一条边的高度，平衡因子是节点左右两棵树的高度差）
+    // 获取平衡因子
     getBalanceFactor(node) {
-        let heightDifference = this.getNodeHeight(node.left) - this.getNodeHeight(node.right);// 高度差
+        let heightDifference = this.getNodeHeight(node.left) - this.getNodeHeight(node.right);// 高度差=左子树高度-右子树高度
 
         switch (heightDifference) {
             case -2: return BalanceFactor.UNBALANCED_RIGHT;

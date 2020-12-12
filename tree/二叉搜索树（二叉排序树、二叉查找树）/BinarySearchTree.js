@@ -2,9 +2,9 @@
     我们将要实现二叉搜索树的如下功能：
     insert(key)：向树中插入一个新的键
     search(key)：在树中查找一个键，如果键存在，则返回true，否则返回false
-    inOrderTraverse()：通过中序遍历方式遍历所有节点
-    preOrderTraverse()：通过先序遍历方式遍历所有节点
-    postOrderTraverse()：通过后序遍历方式遍历所有节点
+    inOrderTraverse()：通过中序遍历方式遍历所有结点
+    preOrderTraverse()：通过先序遍历方式遍历所有结点
+    postOrderTraverse()：通过后序遍历方式遍历所有结点
     min()：返回树中最小的值（键）
     max()：返回树中最大的值（键）
     remove(key)：从树中移除某个键
@@ -12,7 +12,7 @@
 
 
 
-// 定义节点对象
+// 定义结点对象
 class Node {
     constructor(key) {
         this.key = key;
@@ -23,7 +23,7 @@ class Node {
 
 class BinarySearchTree {
     constructor() {
-        this.root = null; // 根节点
+        this.root = null; // 根结点
     }
     
     insert(key) {
@@ -157,13 +157,13 @@ class BinarySearchTree {
                 node.right = removeNode(node.right, key);
                 return node;
             } else {// 键等于node.key
-                // 第一种情况：要移除的节点没有子节点
+                // 第一种情况：要移除的结点没有子结点
                 if (node.left === null && node.right === null) {
                     node = null;
                     return node;
                 }
 
-                // 第二种情况：要移除的节点有一个子节点
+                // 第二种情况：要移除的结点有一个子结点
                 if (node.left === null) {
                     node = node.right;
                     return node;
@@ -172,7 +172,7 @@ class BinarySearchTree {
                     return node;
                 }
 
-                // 第三种情况：要移除的节点有有两个子节点
+                // 第三种情况：要移除的结点有有两个子结点
                 let aux = findMinNode(node.right);
                 node.key = aux.key;
                 node.right = removeNode(node.right, aux.key);
@@ -180,7 +180,7 @@ class BinarySearchTree {
             }
         }
 
-        // 返回最小的那个节点
+        // 返回最小的那个结点
         function findMinNode(node) {
             while (node && node.left !== null) {
                 node = node.left;
@@ -239,6 +239,6 @@ console.log("\n");
 tree.search(13);
 console.log("\n");
 
-// 移除key为15的节点后，执行中序遍历
+// 移除key为15的结点后，执行中序遍历
 tree.remove(15);
-tree.inOrderTraverse(print("移除key为15的节点后，执行中序遍历："));
+tree.inOrderTraverse(print("移除key为15的结点后，执行中序遍历："));
