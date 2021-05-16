@@ -69,7 +69,7 @@ class BinaryBalanceSearchTree {
      * Right left case: rotate right then left
      * @param node Node<T>
      */
-    rotationRl(node) {
+    rotationRL(node) {
         
     }
 
@@ -128,7 +128,7 @@ class BinaryBalanceSearchTree {
                 node = this.rotationLL(node);
             } else {
                 // Left right case
-                return this.rotationLr(node);
+                return this.rotationLR(node);
             }
         }
 
@@ -138,7 +138,7 @@ class BinaryBalanceSearchTree {
                 node = this.rotationRR(node);
             } else {
                 // Right left case
-                return this.rotationRl(node);
+                return this.rotationRL(node);
             }
         }
 

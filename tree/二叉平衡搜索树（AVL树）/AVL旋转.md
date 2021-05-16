@@ -54,3 +54,16 @@ var rotationRL = function(node) {
     return ratationRR(node);
 }
 ```
+
+# 四种旋转
+如果在AVL树中进行插入或删除节点后，可能导致AVL树失去平衡。这种失去平衡的可以概括为4种情况：LL（左左）、LR（左右）、RR（右右）和RL（右左）。
+
+![四种失去平衡的情况](../images/四种失去平衡的情况.png)
+
+AVL失去平衡之后，可以通过旋转使其恢复平衡。下面分别介绍这4种情况对应的旋转方法。
+
+## 1. LL的旋转
+![LL](../images/LL.jpg)
+
+## 2. RR的旋转
+![LL](../images/RR.jpg)
